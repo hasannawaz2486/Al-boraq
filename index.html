@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Al Buraq Pet Clinic & Store | Dr. Muhammad Amir</title>
+<meta name="description" content="Al Buraq Pet Clinic & Store - vaccination, deworming, surgery, consultancy, medicines and minerals for your pets and livestock. Owner: Dr. Muhammad Amir.">
+<meta name="theme-color" content="#0f7b5f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#0f7b5f;--green-dark:#0a5a45;--gold:#f5a623;--cream:#fff9f0;
+  --ink:#1c2b33;--muted:#5f6f78;--white:#fff;
+  --shadow:0 12px 35px rgba(15,123,95,.15);--radius:20px;
+  --sec:clamp(56px,9vw,90px);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px;overflow-x:clip;-webkit-text-size-adjust:100%}
+body{font-family:'Poppins',sans-serif;color:var(--ink);background:var(--cream);overflow-x:clip;line-height:1.65;font-size:clamp(.95rem,.9rem + .2vw,1.05rem)}
+body.lock{overflow:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,100% - 2rem);margin:auto}
+section{padding:var(--sec) 0;position:relative}
+.tag{display:inline-block;background:rgba(15,123,95,.1);color:var(--green);padding:6px 16px;border-radius:50px;font-weight:600;font-size:.85rem;margin-bottom:12px}
+h2.title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4.5vw,2.9rem);color:var(--green-dark);line-height:1.2;margin-bottom:14px}
+.sub{color:var(--muted);max-width:620px}
+.center{text-align:center}.center .sub{margin-inline:auto}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* Loader */
+#loader{position:fixed;inset:0;background:var(--green);z-index:9999;display:grid;place-items:center;transition:opacity .6s,visibility .6s}
+#loader.hide{opacity:0;visibility:hidden}
+#loader .paw{font-size:4.5rem;animation:bounce 1s infinite;text-align:center}
+#loader p{color:#fff;font-weight:600;letter-spacing:2px;margin-top:10px;text-align:center;padding:0 1rem}
+@keyframes bounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-25px) scale(1.15)}}
+#progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--gold),var(--green));z-index:1100}
+
+/* Navbar */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:14px 0;transition:.4s}
+header.scrolled{background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 4px 25px rgba(0,0,0,.08);padding:8px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:clamp(.95rem,3.6vw,1.15rem);line-height:1.2;color:#fff;transition:.3s;min-width:0;position:relative;z-index:1102}
+header.scrolled .logo{color:var(--green-dark)}
+.logo .mark{width:44px;height:44px;flex-shrink:0;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:1.5rem;overflow:hidden}
+.logo .mark img{width:100%;height:100%;object-fit:cover}
+.logo small{display:block;font-size:.65rem;font-weight:500;letter-spacing:1.5px;opacity:.85}
+nav ul{display:flex;gap:clamp(14px,2vw,28px);list-style:none;align-items:center}
+nav a{color:#fff;font-weight:500;font-size:.93rem;position:relative;transition:.3s}
+header.scrolled nav a{color:var(--ink)}
+nav a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--gold);transition:.3s}
+nav a:not(.btn):hover::after{width:100%}
+.btn{display:inline-block;background:var(--gold);color:#222!important;padding:13px 30px;border-radius:50px;font-weight:700;border:none;cursor:pointer;font-size:.95rem;transition:.3s;box-shadow:0 8px 20px rgba(245,166,35,.4);font-family:inherit;text-align:center}
+.btn:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(245,166,35,.5)}
+.btn.outline{background:transparent;border:2px solid #fff;color:#fff!important;box-shadow:none}
+.btn.outline:hover{background:#fff;color:var(--green-dark)!important}
+.burger{display:none;font-size:1.8rem;line-height:1;color:#fff;cursor:pointer;background:none;border:none;padding:6px 10px;position:relative;z-index:1102}
+header.scrolled .burger,header.menu-open .burger{color:var(--green-dark)}
+header.menu-open .burger{color:#fff}
+
+/* Hero */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;background:linear-gradient(135deg,rgba(10,90,69,.93),rgba(15,123,95,.82)),url('images/shop.jpg') center/cover fixed;color:#fff;padding-top:100px;padding-bottom:110px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,50px);align-items:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.1rem,6.5vw,4.3rem);line-height:1.12;margin:14px 0 18px}
+.hero h1 span{color:var(--gold)}
+.hero p{max-width:520px;opacity:.93;margin-bottom:30px}
+.hero .badge{background:rgba(255,255,255,.15);padding:8px 18px;border-radius:50px;display:inline-block;font-size:.88rem;backdrop-filter:blur(6px)}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-card{position:relative;display:grid;place-items:center;padding:10px}
+.hero-img{width:min(420px,100%);aspect-ratio:1;border-radius:50% 50% 50% 12%;background:linear-gradient(135deg,var(--gold),#ffd27a);display:grid;place-items:center;font-size:clamp(5rem,16vw,9rem);overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.35);animation:float 5s ease-in-out infinite;border:8px solid rgba(255,255,255,.25)}
+.hero-img{position:relative}
+.hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-icon{display:inline-block;transition:opacity .4s,transform .4s}
+.hero-icon.swap{opacity:0;transform:scale(.4) rotate(-25deg)}
+.float-chip{transition:opacity .4s}
+.float-chip.swap{opacity:0}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+.float-chip{position:absolute;background:#fff;color:var(--ink);padding:9px 16px;border-radius:50px;font-weight:600;font-size:.85rem;box-shadow:var(--shadow);animation:float 4s ease-in-out infinite;white-space:nowrap}
+.chip1{top:6%;left:0}.chip2{bottom:14%;right:0;animation-delay:1s}.chip3{bottom:0;left:8%;animation-delay:2s}
+.paws span{position:absolute;font-size:2.2rem;opacity:.12;animation:drift 14s linear infinite}
+@keyframes drift{0%{transform:translateY(110vh) rotate(0)}100%{transform:translateY(-20vh) rotate(360deg)}}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;line-height:0}
+
+/* Stats */
+.stats{margin-top:-60px;z-index:5;padding:0}
+.stats-grid{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(4,1fr);padding:35px 20px;text-align:center;gap:16px}
+.stats-grid h3{font-size:clamp(1.7rem,5vw,2.4rem);color:var(--green);font-weight:800}
+.stats-grid p{color:var(--muted);font-size:.9rem}
+
+/* Services */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:26px;margin-top:clamp(30px,5vw,50px)}
+.card{background:#fff;padding:36px 28px;border-radius:var(--radius);box-shadow:0 6px 25px rgba(0,0,0,.06);transition:.4s;position:relative;overflow:hidden;border-bottom:4px solid transparent;text-align:left}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--green),var(--green-dark));opacity:0;transition:.4s;z-index:0}
+.card>*{position:relative;z-index:1;transition:.4s}
+.card:hover{transform:translateY(-12px);border-color:var(--gold)}
+.card:hover::before{opacity:1}
+.card:hover h3,.card:hover p{color:#fff}
+.icon{width:70px;height:70px;border-radius:20px;background:rgba(15,123,95,.1);display:grid;place-items:center;font-size:2.1rem;margin-bottom:18px;transition:.4s}
+.card:hover .icon{background:rgba(255,255,255,.2);transform:rotate(-8deg) scale(1.1)}
+.card h3{color:var(--green-dark);margin-bottom:8px}
+.card p{color:var(--muted);font-size:.93rem}
+
+/* About */
+.about{background:#fff}
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(30px,6vw,60px);align-items:center}
+.doc-photo{aspect-ratio:4/5;max-width:460px;width:100%;margin-inline:auto;border-radius:var(--radius);background:linear-gradient(160deg,var(--green),var(--green-dark));display:grid;place-items:center;font-size:7rem;position:relative;box-shadow:var(--shadow)}
+.doc-photo img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius)}
+.exp-badge{position:absolute;bottom:20px;right:-10px;background:var(--gold);color:var(--ink);padding:14px 20px;border-radius:16px;font-weight:700;font-size:.9rem;box-shadow:var(--shadow);text-align:center;line-height:1.2}
+.exp-badge b{font-size:1.5rem;display:block}
+.about ul{list-style:none;margin:22px 0 28px}
+.about li{padding:6px 0 6px 34px;position:relative}
+.about li::before{content:'✔';position:absolute;left:0;color:#fff;background:var(--green);width:22px;height:22px;border-radius:50%;font-size:.7rem;display:grid;place-items:center;top:10px}
+
+/* Store */
+.store-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:30px 0}
+.tab{padding:10px 22px;border-radius:50px;border:2px solid var(--green);background:transparent;color:var(--green);font-weight:600;cursor:pointer;font-family:inherit;transition:.3s}
+.tab.active,.tab:hover{background:var(--green);color:#fff}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:24px}
+.product{background:#fff;border-radius:var(--radius);padding:28px 20px;text-align:center;box-shadow:0 6px 22px rgba(0,0,0,.06);transition:.35s}
+.product:hover{transform:translateY(-8px) scale(1.02);box-shadow:var(--shadow)}
+.product .emoji{font-size:3.4rem;margin-bottom:8px;display:inline-block;transition:.4s}
+.product:hover .emoji{transform:scale(1.25) rotate(8deg)}
+.product h4{color:var(--green-dark)}
+.product p{font-size:.85rem;color:var(--muted);margin-bottom:12px}
+.product a{color:var(--green);font-weight:600;font-size:.9rem;display:inline-block;padding:4px 0}
+.product.hide{display:none}
+
+/* Gallery */
+.gallery{background:#fff}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:18px;margin-top:clamp(28px,5vw,45px)}
+.gal-item{aspect-ratio:1;border-radius:18px;overflow:hidden;position:relative;cursor:pointer;background:linear-gradient(135deg,var(--green),var(--gold));display:grid;place-items:center;font-size:3.5rem}
+.gal-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.6s}
+.gal-item:hover img{transform:scale(1.15)}
+.gal-item::after{content:'🔍';position:absolute;inset:0;background:rgba(10,90,69,.65);display:grid;place-items:center;font-size:2rem;opacity:0;transition:.4s}
+.gal-item:hover::after{opacity:1}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:3000;display:none;place-items:center;padding:20px}
+#lightbox.open{display:grid}
+#lightbox img{max-height:88vh;max-width:100%;object-fit:contain;border-radius:12px;animation:zoom .3s}
+#lightbox span{position:absolute;top:12px;right:22px;color:#fff;font-size:2.6rem;cursor:pointer;line-height:1;padding:6px}
+@keyframes zoom{from{transform:scale(.7);opacity:0}}
+
+/* Why / Testimonials */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:24px;margin-top:clamp(28px,5vw,45px)}
+.why{text-align:center;padding:25px}
+.why .num{width:78px;height:78px;margin:0 auto 14px;border-radius:50%;background:var(--green);color:#fff;font-size:2rem;display:grid;place-items:center;box-shadow:0 0 0 8px rgba(15,123,95,.15);transition:.4s}
+.why:hover .num{background:var(--gold);transform:rotateY(360deg)}
+.testi{background:linear-gradient(135deg,var(--green-dark),var(--green));color:#fff}
+.testi .title{color:#fff}
+.slider{max-width:720px;margin:40px auto 0;display:grid}
+.slide{grid-area:1/1;opacity:0;visibility:hidden;transform:translateX(30px);transition:.7s;text-align:center;padding:0 6px}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.slide p{font-size:clamp(1rem,2.6vw,1.15rem);font-style:italic}
+.slide h5{margin-top:14px;color:var(--gold);font-size:1rem}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:.3s}
+.dots i.active{background:var(--gold);width:28px;border-radius:6px}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(24px,4vw,40px);margin-top:clamp(28px,5vw,45px)}
+.info{display:grid;gap:18px;align-content:start}
+.info-box{display:flex;gap:16px;align-items:center;background:#fff;padding:20px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.06);transition:.3s}
+.info-box:hover{transform:translateX(10px)}
+.info-box>div:last-child{min-width:0}
+.info-box .i{width:54px;height:54px;border-radius:14px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:1.4rem;flex-shrink:0}
+.info-box h5{color:var(--green-dark)}
+.info-box p{font-size:.9rem;color:var(--muted);overflow-wrap:anywhere}
+form{background:#fff;padding:clamp(20px,4vw,35px);border-radius:var(--radius);box-shadow:var(--shadow);display:grid;gap:15px}
+input,select,textarea{width:100%;padding:14px 16px;border:2px solid #e6ece9;border-radius:12px;font-family:inherit;font-size:16px;transition:.3s;background:#fafdfc;color:var(--ink)}
+textarea{resize:vertical;min-height:110px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 4px rgba(15,123,95,.12)}
+.map{margin-top:40px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);height:clamp(240px,45vw,340px);background:#dfeee9;display:grid;place-items:center;color:var(--muted);text-align:center;padding:20px}
+.map iframe{width:100%;height:100%;border:0}
+
+/* Footer */
+footer{background:#0a2f25;color:#cfe3dc;padding:60px 0 25px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px}
+.foot-grid>div{min-width:0;overflow-wrap:anywhere}
+footer h4{color:#fff;margin-bottom:14px}
+footer li{list-style:none;margin:7px 0}
+footer a:hover{color:var(--gold)}
+.copy{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:20px;text-align:center;font-size:.85rem}
+
+/* Floating buttons */
+.wa{position:fixed;bottom:calc(25px + env(safe-area-inset-bottom,0px));right:25px;width:62px;height:62px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:1.9rem;z-index:900;box-shadow:0 8px 25px rgba(37,211,102,.5);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}70%{box-shadow:0 0 0 22px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+#top{position:fixed;bottom:calc(100px + env(safe-area-inset-bottom,0px));right:32px;width:48px;height:48px;border-radius:50%;background:var(--green);color:#fff;border:none;font-size:1.2rem;cursor:pointer;opacity:0;visibility:hidden;transition:.3s;z-index:900}
+#top.show{opacity:1;visibility:visible}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:1s cubic-bezier(.2,.7,.2,1)}
+.reveal.left{transform:translateX(-50px)}.reveal.right{transform:translateX(50px)}
+.reveal.show{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .hero{background-attachment:scroll}
+  .stats-grid{padding:30px 16px}
+}
+@media(max-width:900px){
+  .hero-grid,.about-grid,.contact-grid,.foot-grid{grid-template-columns:1fr}
+  .hero{text-align:center;padding-top:96px}
+  .hero p,.hero-btns{margin-inline:auto;justify-content:center}
+  .hero-card{order:-1;max-width:300px;margin-inline:auto}
+  .hero-img{width:min(260px,100%)}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:25px}
+  .burger{display:block}
+  header.scrolled{backdrop-filter:none;background:#fff}
+  nav ul{position:fixed;inset:0 0 0 auto;width:min(78%,320px);height:100vh;height:100dvh;background:var(--green-dark);flex-direction:column;justify-content:center;gap:26px;transform:translateX(105%);visibility:hidden;transition:transform .45s,visibility .45s;z-index:1101;box-shadow:-10px 0 40px rgba(0,0,0,.3)}
+  nav ul.open{transform:none;visibility:visible}
+  nav a,header.scrolled nav a{color:#fff;font-size:1.1rem}
+  .reveal.left,.reveal.right{transform:translateY(40px)}
+  .reveal.show{transform:none}
+  .exp-badge{right:10px}
+  .about .reveal.right{text-align:center}
+  .about ul{text-align:left;display:inline-block}
+  .info-box:hover{transform:none}
+  .foot-grid{gap:28px}
+}
+@media(max-width:600px){
+  .container{width:calc(100% - 1.5rem)}
+  .logo small{letter-spacing:1px}
+  .hero-btns .btn{flex:1 1 100%}
+  .float-chip{font-size:.75rem;padding:7px 12px}
+  .chip1{left:-4px}.chip2{right:-4px}
+  .stats{margin-top:-45px}
+  .stats-grid{padding:24px 12px;gap:18px}
+  .card{padding:28px 22px}
+  .info-box{padding:16px;gap:12px}
+  .info-box .i{width:46px;height:46px;font-size:1.2rem}
+  .wa{width:54px;height:54px;font-size:1.6rem;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  #top{width:42px;height:42px;right:22px;bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+  .store-tabs{gap:8px}.tab{padding:8px 16px;font-size:.88rem}
+  .products{gap:14px;grid-template-columns:repeat(2,1fr)}
+  .product{padding:20px 12px}.product .emoji{font-size:2.6rem}
+  .gal-grid{gap:10px;grid-template-columns:repeat(2,1fr)}
+  .gal-item{font-size:2.4rem;border-radius:14px}
+  .doc-photo{font-size:5rem}
+}
+@media(max-width:360px){
+  .products,.gal-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .logo small{display:none}
+}
+@media(max-height:480px) and (orientation:landscape){
+  .hero{min-height:auto;padding-top:90px}
+  nav ul{gap:14px;overflow-y:auto;justify-content:flex-start;padding:70px 0 20px}
+}
+@media(hover:none){.card:hover,.product:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div id="loader"><div><div class="paw">🐾</div><p>AL BURAQ PET CLINIC</p></div></div>
+<div id="progress"></div>
+
+<header id="header">
+  <div class="container nav">
+    <a href="#home" class="logo">
+      <span class="mark"><img src="images/logo.png" alt="" onerror="this.remove();this.parentNode.textContent='🐾'"></span>
+      <span>Al Buraq Pet Clinic<small>& STORE</small></span>
+    </a>
+    <nav>
+      <ul id="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#store">Store</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="btn">Book Visit</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="paws"><span style="left:8%;animation-delay:0s">🐾</span><span style="left:30%;animation-delay:4s">🐾</span><span style="left:55%;animation-delay:8s">🐾</span><span style="left:80%;animation-delay:2s">🐾</span></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="badge">🩺 Trusted Veterinary Care</span>
+      <h1>Caring for Your <span id="typed"></span><br>Like Family</h1>
+      <p>Al Buraq Pet Clinic & Store offers expert vaccination, deworming, surgery, consultancy, plus quality medicines and minerals — all under the care of Dr. Muhammad Amir.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn">Book Appointment</a>
+        <a href="#services" class="btn outline">Our Services</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-img">
+        <span id="heroIcon" class="hero-icon">🏥</span>
+        <img src="images/hero.jpg" alt="Al Buraq Pet Clinic" onerror="this.remove()">
+      </div>
+      <span class="float-chip chip1" id="chip1">💉 Vaccination</span>
+      <span class="float-chip chip2" id="chip2">✂️ Surgery</span>
+      <span class="float-chip chip3" id="chip3">💊 Medicines</span>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none" height="80"><path fill="#fff9f0" d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,100L0,100Z"/></svg>
+</section>
+
+<section class="stats">
+  <div class="container stats-grid reveal">
+    <div><h3 data-count="5000">0</h3><p>Happy Pets Treated</p></div>
+    <div><h3 data-count="3000">0</h3><p>Vaccinations Done</p></div>
+    <div><h3 data-count="800">0</h3><p>Successful Surgeries</p></div>
+    <div><h3 data-count="10">0</h3><p>Years of Experience</p></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container center">
+    <span class="tag reveal">OUR SERVICES</span>
+    <h2 class="title reveal">Complete Care for Pets & Livestock</h2>
+    <p class="sub reveal">From routine check-ups to advanced surgery, everything your animals need under one roof.</p>
+    <div class="grid3">
+      <div class="card reveal d1"><div class="icon">💉</div><h3>Vaccination</h3><p>Complete vaccination schedules for dogs, cats, birds and livestock to protect against deadly diseases.</p></div>
+      <div class="card reveal d2"><div class="icon">🪱</div><h3>Deworming</h3><p>Safe and effective internal and external deworming to keep your animals healthy and parasite-free.</p></div>
+      <div class="card reveal d3"><div class="icon">✂️</div><h3>Surgery</h3><p>Safe surgical procedures with proper anesthesia, hygiene and careful post-operative care.</p></div>
+      <div class="card reveal d1"><div class="icon">🩺</div><h3>Consultancy</h3><p>Expert advice on health, nutrition, breeding and disease prevention from an experienced veterinarian.</p></div>
+      <div class="card reveal d2"><div class="icon">💊</div><h3>Medicines</h3><p>Genuine veterinary medicines and treatments available at the clinic store at fair prices.</p></div>
+      <div class="card reveal d3"><div class="icon">🧂</div><h3>Minerals & Supplements</h3><p>Mineral mixtures, vitamins and feed supplements for strong growth, milk and immunity.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="reveal left">
+      <div class="doc-photo"><img src="images/doctor.jpg" alt="Dr. Muhammad Amir" onerror="this.remove();this.parentNode.insertAdjacentText('afterbegin','👨‍⚕️')">
+        <div class="exp-badge"><b>10+</b>Years Experience</div>
+      </div>
+    </div>
+    <div class="reveal right">
+      <span class="tag">MEET THE DOCTOR</span>
+      <h2 class="title">Dr. Muhammad Amir</h2>
+      <p class="sub" style="margin-bottom:10px">Founder & owner of Al Buraq Pet Clinic & Store. Dr. Amir is dedicated to giving every animal honest, affordable and compassionate treatment.</p>
+      <ul>
+        <li>Experienced in small & large animal treatment</li>
+        <li>Vaccination, deworming and surgical care</li>
+        <li>Genuine medicines & mineral supplements in store</li>
+        <li>Practical advice for pet owners and farmers</li>
+      </ul>
+      <a href="#contact" class="btn">Consult the Doctor</a>
+    </div>
+  </div>
+</section>
+
+<section id="store">
+  <div class="container center">
+    <span class="tag reveal">PET STORE</span>
+    <h2 class="title reveal">Medicines, Minerals & More</h2>
+    <p class="sub reveal">Visit our store or message us on WhatsApp to check availability.</p>
+    <div class="store-tabs reveal">
+      <button class="tab active" data-f="all">All</button>
+      <button class="tab" data-f="med">Medicines</button>
+      <button class="tab" data-f="min">Minerals</button>
+      <button class="tab" data-f="vac">Vaccines</button>
+    </div>
+    <div class="products">
+      <div class="product reveal" data-c="med"><div class="emoji">💊</div><h4>Antibiotics</h4><p>Veterinary prescribed antibiotics</p><a href="#contact">Ask Price →</a></div>
+      <div class="product reveal" data-c="med"><div class="emoji">🧴</div><h4>Anti-Parasitic</h4><p>Tick, flea & mange treatments</p><a href="#contact">Ask Price →</a></div>
+      <div class="product reveal" data-c="med"><div class="emoji">🪱</div><h4>Dewormers</h4><p>Tablets, syrups & injections</p><a href="#contact">Ask Price →</a></div>
+      <div class="product reveal" data-c="vac"><div class="emoji">💉</div><h4>Vaccines</h4><p>Dogs, cats, poultry & livestock</p><a href="#contact">Ask Price →</a></div>
+      <div class="product reveal" data-c="min"><div class="emoji">🧂</div><h4>Mineral Mixture</h4><p>Calcium, phosphorus & trace minerals</p><a href="#contact">Ask Price →</a></div>
+      <div class="product reveal" data-c="min"><div class="emoji">🥛</div><h4>Milk Boosters</h4><p>Supplements for dairy animals</p><a href="#contact">Ask Price →</a></div>
+      <div class="product reveal" data-c="min"><div class="emoji">🍊</div><h4>Vitamins</h4><p>Immunity & growth support</p><a href="#contact">Ask Price →</a></div>
+      <div class="product reveal" data-c="med"><div class="emoji">🩹</div><h4>First-Aid Items</h4><p>Wound care, syringes & more</p><a href="#contact">Ask Price →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="container center">
+    <span class="tag reveal">GALLERY</span>
+    <h2 class="title reveal">A Look Inside Our Clinic</h2>
+    <p class="sub reveal">Our shop, our work and the animals we care for.</p>
+    <div class="gal-grid">
+      <div class="gal-item reveal d1">🏥<img src="images/gallery1.jpg" alt="Clinic photo 1" onerror="this.remove()"></div>
+      <div class="gal-item reveal d2">🐕<img src="images/gallery2.jpg" alt="Clinic photo 2" onerror="this.remove()"></div>
+      <div class="gal-item reveal d3">🐈<img src="images/gallery3.jpg" alt="Clinic photo 3" onerror="this.remove()"></div>
+      <div class="gal-item reveal d1">💊<img src="images/gallery4.jpg" alt="Clinic photo 4" onerror="this.remove()"></div>
+      <div class="gal-item reveal d2">🐄<img src="images/gallery5.jpg" alt="Clinic photo 5" onerror="this.remove()"></div>
+      <div class="gal-item reveal d3">🐓<img src="images/gallery6.jpg" alt="Clinic photo 6" onerror="this.remove()"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container center">
+    <span class="tag reveal">WHY CHOOSE US</span>
+    <h2 class="title reveal">Care You Can Trust</h2>
+    <div class="why-grid">
+      <div class="why reveal d1"><div class="num">🎓</div><h4>Qualified Doctor</h4><p class="sub">Treatment by an experienced veterinarian.</p></div>
+      <div class="why reveal d2"><div class="num">✅</div><h4>Genuine Products</h4><p class="sub">Only original medicines & supplements.</p></div>
+      <div class="why reveal d3"><div class="num">💰</div><h4>Fair Prices</h4><p class="sub">Affordable care for every owner.</p></div>
+      <div class="why reveal d1"><div class="num">❤️</div><h4>Caring Approach</h4><p class="sub">We treat every animal like family.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="container center">
+    <span class="tag" style="background:rgba(255,255,255,.15);color:#fff">REVIEWS</span>
+    <h2 class="title">What Pet Owners Say</h2>
+    <!-- Replace these sample reviews with real customer reviews -->
+    <div class="slider" id="slider">
+      <div class="slide active"><p>“Very professional and caring doctor. My dog recovered quickly after surgery. Highly recommended!”</p><h5>— Danish Ali</h5></div>
+      <div class="slide"><p>“All medicines and minerals for my animals are available here at good prices. Great advice too.”</p><h5>— Usama Pansota</h5></div>
+      <div class="slide"><p>“Vaccination and deworming done perfectly for my cats. Clean clinic and friendly service.”</p><h5>— Wahaj ahmed</h5></div>
+    </div>
+    <div class="dots" id="dots"><i class="active"></i><i></i><i></i></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="center">
+      <span class="tag reveal">CONTACT US</span>
+      <h2 class="title reveal">Book an Appointment</h2>
+      <p class="sub reveal">Send us a message and we will get back to you quickly.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="info reveal left">
+        <div class="info-box"><div class="i">📍</div><div><h5>Address</h5><p>Al Buraq Pet Clinic & Store, Main Sheikhupura Road, Near Go Pump, Manawala, Faisalabad</p></div></div>
+        <div class="info-box"><div class="i">📞</div><div><h5>Phone</h5><p><a href="tel:+923029213313">+92 302 9213313</a></p></div></div>
+        <div class="info-box"><div class="i">💬</div><div><h5>WhatsApp</h5><p><a href="https://wa.me/923029213313" target="_blank" rel="noopener">Chat with Dr. Amir</a></p></div></div>
+        <div class="info-box"><div class="i">🕘</div><div><h5>Opening Hours</h5><p>Mon – Sat: 9:00 AM – 9:00 PM<br>Sunday: Emergency only</p></div></div>
+      </div>
+      <form class="reveal right" id="form">
+        <input type="text" id="name" placeholder="Your Name" autocomplete="name" required>
+        <input type="tel" id="phone" placeholder="Phone Number" autocomplete="tel" required>
+        <select id="service">
+          <option>Vaccination</option><option>Deworming</option><option>Surgery</option>
+          <option>Consultancy</option><option>Medicines</option><option>Minerals / Supplements</option>
+        </select>
+        <textarea id="msg" rows="4" placeholder="Tell us about your pet / animal"></textarea>
+        <button class="btn" type="submit">Send via WhatsApp 💬</button>
+      </form>
+    </div>
+    <!-- Google Maps: open your shop on Google Maps > Share > Embed a map > copy the src link and paste in MAP_EMBED below -->
+    <div class="map reveal">
+      <iframe id="mapframe" src="" loading="lazy" title="Clinic location" style="display:none"></iframe>
+      <p id="mapnote">📍 Map will appear here. Paste your Google Maps embed link in the code.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div><h4>🐾 Al Buraq Pet Clinic & Store</h4><p>Vaccination • Deworming • Surgery • Consultancy • Medicines • Minerals.<br>Owner: Dr. Muhammad Amir</p></div>
+      <div><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#services">Services</a></li><li><a href="#store">Store</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>📞 <a href="tel:+923029213313">+92 302 9213313</a></li><li>💬 WhatsApp available</li><li>📍 Main Sheikhupura Road, Near Go Pump, Manawala, Faisalabad</li></ul></div>
+    </div>
+    <div class="copy">© <span id="year"></span> Al Buraq Pet Clinic & Store. All rights reserved.</div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/923029213313" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+<button id="top" aria-label="Back to top">↑</button>
+<div id="lightbox"><span>&times;</span><img alt=""></div>
+
+<script>
+const WHATSAPP = "923029213313";   // country code + number, digits only
+const MAP_EMBED = "";              // paste Google Maps embed src here
+
+const $=id=>document.getElementById(id);
+
+// Loader (also hides if load event is slow)
+const hideLoader=()=>$('loader').classList.add('hide');
+window.addEventListener('load',()=>setTimeout(hideLoader,600));
+setTimeout(hideLoader,4000);
+
+// Navbar, progress, back-to-top
+const header=$('header'),bar=$('progress'),topBtn=$('top');
+function onScroll(){
+  const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+  header.classList.toggle('scrolled',y>60);
+  bar.style.width=(h>0?y/h*100:0)+'%';
+  topBtn.classList.toggle('show',y>500);
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+topBtn.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+
+// Mobile menu
+const menu=$('menu'),burger=$('burger');
+function setMenu(open){
+  menu.classList.toggle('open',open);header.classList.toggle('menu-open',open);
+  document.body.classList.toggle('lock',open);
+  burger.textContent=open?'✕':'☰';burger.setAttribute('aria-expanded',open);
+}
+burger.onclick=()=>setMenu(!menu.classList.contains('open'));
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>setMenu(false));
+addEventListener('resize',()=>{if(innerWidth>900)setMenu(false)});
+addEventListener('keydown',e=>{if(e.key==='Escape'){setMenu(false);lb.classList.remove('open')}});
+
+// Typing effect
+const words=['Pets','Dogs','Cats','Livestock','Birds'];let w=0,c=0,del=false;
+const typed=$('typed');
+(function type(){
+  const word=words[w];
+  typed.textContent=word.substring(0,c);
+  let speed=del?60:120;
+  if(!del){c++;if(c>word.length){del=true;c=word.length;speed=1200}}
+  else{c--;if(c<0){del=false;w=(w+1)%words.length;c=0;speed=300}}
+  setTimeout(type,speed);
+})();
+
+// Reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Counters
+const co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,t=+el.dataset.count;let n=0;const step=Math.ceil(t/80);
+  const id=setInterval(()=>{n+=step;if(n>=t){n=t;clearInterval(id)}el.textContent=n.toLocaleString()+'+'},25);
+  co.unobserve(el);
+}),{threshold:.4});
+document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
+
+// Store filter
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
+  document.querySelectorAll('.product').forEach(p=>{
+    const hide=t.dataset.f!=='all'&&p.dataset.c!==t.dataset.f;
+    p.classList.toggle('hide',hide);if(!hide)p.classList.add('show');
+  });
+});
+
+// Testimonial slider
+const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('#dots i');let s=0,timer;
+function show(i){slides[s].classList.remove('active');dots[s].classList.remove('active');s=i;slides[s].classList.add('active');dots[s].classList.add('active')}
+function auto(){timer=setInterval(()=>show((s+1)%slides.length),5000)}
+dots.forEach((d,i)=>d.onclick=()=>{clearInterval(timer);show(i);auto()});auto();
+
+// Lightbox
+const lb=$('lightbox'),lbImg=lb.querySelector('img');
+document.querySelectorAll('.gal-item').forEach(g=>g.onclick=()=>{const im=g.querySelector('img');if(im){lbImg.src=im.src;lb.classList.add('open')}});
+lb.onclick=()=>lb.classList.remove('open');
+
+// Contact form -> WhatsApp
+$('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const text=`Hello Dr. Amir, my name is ${$('name').value}.\nPhone: ${$('phone').value}\nService: ${$('service').value}\nMessage: ${$('msg').value}`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`,'_blank');
+});
+
+// Rotating hero icon
+const heroIcons=['🏥','🐶','🐱','🐄','🐓','🐑','🐴','🩺'];
+const heroIcon=$('heroIcon');let hi=0;
+setInterval(()=>{
+  heroIcon.classList.add('swap');
+  setTimeout(()=>{hi=(hi+1)%heroIcons.length;heroIcon.textContent=heroIcons[hi];heroIcon.classList.remove('swap')},400);
+},2500);
+
+// Rotating chips (each changes on its own timing)
+function rotateChip(id,items,every,offset){
+  const el=$(id);let i=0;
+  setTimeout(()=>setInterval(()=>{
+    el.classList.add('swap');
+    setTimeout(()=>{i=(i+1)%items.length;el.textContent=items[i];el.classList.remove('swap')},400);
+  },every),offset);
+}
+rotateChip('chip1',['💉 Vaccination','🪱 Deworming','🩺 Consultancy'],3000,0);
+rotateChip('chip2',['✂️ Surgery','🏥 Clinic Care','🩹 First Aid'],3000,1000);
+rotateChip('chip3',['💊 Medicines','🧂 Minerals','🥛 Milk Boosters'],3000,2000);
+
+// Map
+if(MAP_EMBED){const f=$('mapframe');f.src=MAP_EMBED;f.style.display='block';$('mapnote').style.display='none'}
+$('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
